@@ -1,4 +1,5 @@
 160604
+
 신호 기본 수업(우리학교의 경우 Signal And System)을 수강하다 보면 그럴듯한 정리로 처음 등장하는 것이 바로  Nyquist's Sampling Theorem이라 할 수 있을 것이다.
 Nyquist's Sampling Theorem의 기본 골자라고 하면, BW B로 Bandlimited 되어있는 continuous signal을 f_s > 2B로 샘플링하여 disrete signal로 바꾸면 앨리어싱 없이 신호를 다시 continuous signal로 복원할 수 있다는 것이다.
 이 때 f_n = 2B를 Nyquist Rate 라고 정의하고, 관련 내용에서 자주 쓴다. 
@@ -18,3 +19,19 @@ BW B로 bandlimited 되어있는 채널 특성이 ideal lowpass filter형태로 
 그래서 채널에 전혀 노이즈가 껴있지 않은 상황에서도, bandlimited 되어있다는 이유만으로 심볼이 깨지기 시작한다.
 디지털 통신에서 말하는 Nyquist Rate는 결국 noiseless channel 상황에서 심볼이 깨지지 않는 최대 symbol rate를 일컫게 된다.
 
+그럼 이러한 환경에서는 어떤 조건을 만족해야 심볼이 깨지지 않을까? 
+그에 대한 해답은 Nyquist (ISI) criterion이라는 기준을 따르면 된다.
+이 기준에 대한 설명/증명은 책이나 다음 링크를 따르자(아니면 자기가 증명하던가!)
+
+https://en.wikipedia.org/wiki/Nyquist_ISI_criterion
+
+저 criterion을 따른다면, Symbol Duration T가 1/(2B)를 기점으로 해 심볼의 생명을 결정짓는다.
+즉 f=1/T가 nyquist rate에 관련된 주파수가 되는 것이다.
+
+f<2B 일 때에는 심볼 모양을 잘 설계하면 ISI가 생기지 않는다.
+
+f=2B 일 때에는 심볼 모양이 sinc면(즉 f-domain에서 rect) ISI가 생기지 않는다.
+
+f>2B 일 때에는 어떤 심볼 모양을 사용해도 ISI가 생긴다.
+
+결론적으로 noiseless한 상황에서는 f=2B가 가장 높은 심볼레이트를 나타내는 것이 된다.
